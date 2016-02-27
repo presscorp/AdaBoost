@@ -10,6 +10,9 @@
 
 int main()
 {
+  arma::wall_clock timer;
+  double elapsedTime;
+
     /* Training data: */
     arma::mat features;
     features.load("../data/train/features.dat");
@@ -19,8 +22,13 @@ int main()
     /* Feeding our AdaBoost algorithm with data: */
     AdaBoost adaboost(features, classes);
 
+    timer.tic();
+
     /* Launch training: */
     adaboost.train();
+
+    elapsedTime = timer.toc();
+    printf("Elapsed time: %f\n\n", elapsedTime);
 
 
     /* Testing data: */
@@ -33,10 +41,14 @@ int main()
     ivec finalHypothesis;
     double error;
 
+    timer.tic();
+
     /* Perform testing: */
     adaboost.test(features2, classes2, finalHypothesis, error);
 
+    elapsedTime = timer.toc();
     printf("Testing error is %f.\n", error);
+    printf("Elapsed time: %f\n\n", elapsedTime);
 
     return EXIT_SUCCESS;
 }

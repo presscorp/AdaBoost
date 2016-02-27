@@ -24,7 +24,7 @@ struct Threshold
     uword featureType;
 
     /*
-        Threashold value;
+        Threshold value;
     */
     double value;
 
@@ -42,6 +42,8 @@ struct Model
 {
     /*
         Number of weak classifiers;
+        "nWeakCount" defines valid number of thresholds and weights;
+         It can be less than "thresholds.size( )" or "alpha.n_elem";
     */
     uint nWeakCount;
 

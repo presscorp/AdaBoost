@@ -28,7 +28,7 @@ DSC::DSC(const mat &features, const ivec &classes, const vec &weights, const int
     maxFeatures = max(features) + 1e-10;
     ranges = maxFeatures - minFeatures;
 
-    /* Distribution of threashold values for each feature; */
+    /* Distribution of threshold values for each feature; */
     mat class1ThresholdsMat = floor(((class1Features.each_row() - minFeatures).each_row() / ranges) * (N_THRESHOLDS - 1) + 1 - 1e-10);
     class1ThresholdsMat(find(class1ThresholdsMat < 0)).zeros();
     mat class2ThresholdsMat = ceil(((class2Features.each_row() - minFeatures).each_row() / ranges) * (N_THRESHOLDS - 1) + 1 + 1e-10);
