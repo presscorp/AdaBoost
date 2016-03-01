@@ -10,8 +10,8 @@
 
 int main()
 {
-  arma::wall_clock timer;
-  double elapsedTime;
+    arma::wall_clock timer;
+    double elapsedTime;
 
     /* Training data: */
     arma::mat features;
@@ -28,7 +28,7 @@ int main()
     adaboost.train();
 
     elapsedTime = timer.toc();
-    printf("Elapsed time: %f\n\n", elapsedTime);
+    printf("Elapsed time: %f sec.\n\n", elapsedTime);
 
 
     /* Testing data: */
@@ -48,7 +48,7 @@ int main()
 
     elapsedTime = timer.toc();
     printf("Testing error is %f.\n", error);
-    printf("Elapsed time: %f\n\n", elapsedTime);
+    printf("Elapsed time: %f sec.\n", elapsedTime);
 
     return EXIT_SUCCESS;
 }

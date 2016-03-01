@@ -46,22 +46,22 @@ public:
     /*
         "setMaxWeakCount()" function sets maximum number of weak classifiers;
     */
-    inline void setMaxWeakCount(const uint &maxWeakCount);
+    void setMaxWeakCount(const uint &maxWeakCount);
 
     /*
         "setModel()" function sets a new Model;
     */
-    inline void setModel(const Model &model);
+    void setModel(const Model &model);
 
     /*
         "getModel()" function provides trained or set Model;
     */
-    inline void getModel(Model &model) const;
+    void getModel(Model &model) const;
 
     /*
         "getTrainErrors()" function saves train errors to the passed vector;
     */
-    inline void getTrainErrors(vec &trainErrors) const;
+    void getTrainErrors(vec &trainErrors) const;
 
 private:
     const mat features;

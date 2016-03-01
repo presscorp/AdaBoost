@@ -41,14 +41,14 @@ void AdaBoost::train()
     {
         ivec weakHypothesis;
         double error;
-        
+
         /*
             Acquiring the best decision stump's threshold, weak hypothesis and its error
             according to the current sample weights:
         */
         dsc.getBestStump(model.thresholds[t], weakHypothesis, error);
         ++model.nWeakCount;
-        
+
         /* Stop if there is no threshold with error < 0.5  */
         if (error >= 0.5)
         {
@@ -68,13 +68,13 @@ void AdaBoost::train()
         cFinalHypothesis += model.alpha(t) * conv_to<vec>::from(weakHypothesis);
         trainFinalHypothesis = conv_to<ivec>::from(sign(cFinalHypothesis));
         trainErrors(t) = static_cast<double>(sum(trainFinalHypothesis != classes)) / classes.n_rows;
-        
+
         /* Stop if training error is reached absolute 0.00: */
         if (trainErrors(t) == 0)
         {
             printf("Training error on iteration %u is reached %f.\n", t, 0.00);
             isModeled = true;
-            
+
             return;
         }
     }
@@ -146,7 +146,7 @@ void AdaBoost::predict(const mat &features, ivec &finalHypothesis)
 /*
     "setMaxWeakCount()" sets maximum number of weak classifiers;
 */
-inline void AdaBoost::setMaxWeakCount(const uint &maxWeakCount)
+void AdaBoost::setMaxWeakCount(const uint &maxWeakCount)
 {
     this->maxWeakCount = maxWeakCount;
 
@@ -156,7 +156,7 @@ inline void AdaBoost::setMaxWeakCount(const uint &maxWeakCount)
 /*
     "getModel()" provides trained or set Model;
 */
-inline void AdaBoost::setModel(const Model &model)
+void AdaBoost::setModel(const Model &model)
 {
     this->model = model;
     isModeled = true;
@@ -167,7 +167,7 @@ inline void AdaBoost::setModel(const Model &model)
 /*
     "getModel()" provides trained or set Model;
 */
-inline void AdaBoost::getModel(Model &model) const
+void AdaBoost::getModel(Model &model) const
 {
     if (isModeled == false)
     {
@@ -182,7 +182,7 @@ inline void AdaBoost::getModel(Model &model) const
 /*
     "getTrainErrors()" function saves train errors to the passed vector;
 */
-inline void AdaBoost::getTrainErrors(vec &trainErrors) const
+void AdaBoost::getTrainErrors(vec &trainErrors) const
 {
     if (isModeled == false)
     {
